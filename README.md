@@ -1,4 +1,4 @@
-# 📘 BigQuery Schema Ripper - Enhanced Version
+# 📘 BigQuery Schema Ripper
 
 ## 🚀 Overview
 
@@ -10,13 +10,14 @@ This script extracts schema metadata from all datasets or a specified dataset in
 
 ## 🔧 Features
 
-- ✅ **Authentication** with Google Cloud via Colab
-- ✅ **Optional dataset filtering** (scan one dataset or all datasets)
-- ✅ **Choose export format**: CSV or JSON
-- ✅ **Export destination options**:
-  - Save to **Google Drive** (if available)
-  - **Download** directly to local machine
-- ✅ Prints schema in a readable format to console
+* ✅ **Authentication** with Google Cloud via Colab
+* ✅ **Optional dataset filtering** (scan one dataset or all datasets)
+* ✅ **Choose export format**: CSV or JSON
+* ✅ **Export destination options**:
+
+  * Save to **Google Drive** (if available)
+  * **Download** directly to local machine
+* ✅ Prints schema in a readable format to console
 
 ---
 
@@ -31,12 +32,12 @@ auth.authenticate_user()
 
 ## 📦 Required Libraries
 
-- `google.cloud.bigquery`
-- `google.auth`
-- `pandas`
-- `json`
-- `os`
-- `google.colab` (for Drive and file download support)
+* `google.cloud.bigquery`
+* `google.auth`
+* `pandas`
+* `json`
+* `os`
+* `google.colab` (for Drive and file download support)
 
 Install any missing libraries using pip:
 
@@ -53,31 +54,34 @@ Install any missing libraries using pip:
 3. Scans the project for datasets and their table schemas
 4. Outputs schema data to a file: `bigquery_schema.csv` or `bigquery_schema.json`
 5. Prompts for export **destination**:
-   - Type `yes` to mount Google Drive and save the file there
-   - Type `no` to immediately trigger a download to your local machine
+
+   * Type `yes` to mount Google Drive and save the file there
+   * Type `no` to immediately trigger a download to your local machine
 
 ---
 
 ## 📄 Steps to Run
 
 1. Open the script in Google Colab.
-2. **Update the **``** placeholder** in the script with your actual GCP project ID:
+2. **Update the `PROJECT_ID` placeholder** in the script with your actual GCP project ID:
+
    ```python
    PROJECT_ID = 'INSERT_BIGQUERY_PROJECT_ID_HERE'
    ```
 3. Run all cells (step-by-step or Runtime > Run All).
 4. When prompted:
-   - Enter a dataset ID (or press Enter for all)
-   - Enter export format (`csv` or `json`)
-   - Choose whether to export to Drive or download directly
+
+   * Enter a dataset ID (or press Enter for all)
+   * Enter export format (`csv` or `json`)
+   * Choose whether to export to Drive or download directly
 5. The script prints progress and generates a downloadable/exported file.
 
 ---
 
 ## 📄 Export Options
 
-- **Google Drive** (mounted automatically using `drive.mount()`)
-- **Direct Download** using `files.download()`
+* **Google Drive** (mounted automatically using `drive.mount()`)
+* **Direct Download** using `files.download()`
 
 ---
 
@@ -89,20 +93,60 @@ Install any missing libraries using pip:
 
 ---
 
+## 💬 Sample LLM Prompts for Using Schema Output
+
+### 🔹 Analyze the Data Model
+
+**Prompt:**
+
+```
+Using symbolic analysis, please find foreign key and primary key candidates from this export of a database:
+<insert exported CSV or JSON here>
+```
+
+### 🔹 Suggest ERD Diagram
+
+**Prompt:**
+
+```
+Based on the following schema metadata, generate a simple entity relationship diagram (ERD) including key relationships and cardinality:
+<insert schema export>
+```
+
+### 🔹 Generate Synthetic Sample Rows
+
+**Prompt:**
+
+```
+Using the table and field definitions in this schema, create synthetic example rows for each table that respect likely data types and relationships:
+<insert schema export>
+```
+
+### 🔹 Recommend Data Quality Checks
+
+**Prompt:**
+
+```
+Given this schema export, suggest a list of data validation rules or quality checks we should apply (e.g. null constraints, unique constraints, value ranges):
+<insert schema export>
+```
+
+---
+
 ## 🔄 Future Improvements (Optional)
 
-- Support for nested RECORD flattening
-- Add field descriptions and labels
-- Include table metadata (e.g. description, row counts)
-- Optional export to Google Cloud Storage (GCS)
+* Support for nested RECORD flattening
+* Add field descriptions and labels
+* Include table metadata (e.g. description, row counts)
+* Optional export to Google Cloud Storage (GCS)
 
 ---
 
 ## ✅ Usage Notes
 
-- Run in **Google Colab** with proper project permissions.
-- Make sure the Google Cloud project is accessible to your authenticated account.
-- The script uses **read-only** access for safety.
+* Run in **Google Colab** with proper project permissions.
+* Make sure the Google Cloud project is accessible to your authenticated account.
+* The script uses **read-only** access for safety.
 
 ---
 
@@ -113,4 +157,3 @@ For suggestions or issues, reach out to the script author.
 ---
 
 Happy ripping schemas! 🎉
-
